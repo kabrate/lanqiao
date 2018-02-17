@@ -13,11 +13,11 @@ int main()
 
   rewind(fp1);
 
-  for(i=0;i<50;i++)//读取会员的经度和纬度数据 
+  for(i=0;i<50;i++)
    {fscanf(fp1,"%lf %lf",&price[i],&discount[i]);
    
    }
-  for(j=0;j<50;j++)//读取任务地点的经度和纬度数据 
+  for(j=0;j<50;j++)
    {
     total_price = total_price + price[j]*discount[j];
      
