@@ -40,13 +40,13 @@ int main(int argc, char** argv)
 			for( k = 1; k < 7; ++k)
 				if( Compact[ Parner[j] ][k] )
 					dp[e][j] += dp[1-e][k];
-			dp[e][j]%=MOD;
+			//dp[e][j]%=MOD;
 		}
 		
 	}
 	int sum=0;
 	for( int i = 1; i < 7; ++i)
-		sum = (sum+dp[e][i])%MOD;
+		sum = (sum+dp[e][i]);//%MOD;
 	sum = (sum*C)%MOD;
 	cout << sum;
 	return 0;
