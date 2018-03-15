@@ -3,7 +3,9 @@
 #include<algorithm>
 using namespace std;
 vector<int> a;
+int b[] = { 2,4,5,6,7,9,10,11,12 };
 int ans = 0;
+int visit[9];
 int check()
 {
 	int num1, num2, num3, num4, num5, num6;
@@ -13,6 +15,8 @@ int check()
 	num4 = 1 + a[1] + a[4] + a[8];
 	num5 = 1 + a[0] + a[3] + a[5];
 	num6 = 3 + a[7] + a[4] + a[2];
+	//set<int> b(a.begin(),a.end());
+	//if (a.size() != b.size()) return 0;
 	if (num1 != num2) return 0;
 	if (num2 != num3) return 0;
 	if (num3 != num4) return 0;
@@ -28,23 +32,30 @@ void dfs(int n)
 		if (check()) ans++;
 		return;
 	}
-	for (int i = 2; i <= 12; i++)
-	{	
-		if (i == 3 || i== 8 || find(a.begin(), a.end(), i) != a.end())
+	for (int i = 0; i <= 8; i++)
+	{
+		if (find(a.begin(),a.end(),b[i])==a.end())
 		{
-			continue;
+			a[n] = b[i];
+			dfs(n + 1);
+			//visit[i]==1;
+			a[n] = 0;
+			//visit[i]==0;
 		}
-		a[n] = i;
-		dfs(n + 1);
+
 	}
 }
 int main()
 {
 	for (int i = 0; i < 9; i++)
 	{
-		a.push_back(0);
+		a.push_back(b[i]);
 	}
-	dfs(0);
+	while (next_permutation(a.begin(),a.end()))
+	{
+		if (check()) ans++;
+	}
+	//dfs(0);
 	printf("%d", ans);
 	return 0;
 }
